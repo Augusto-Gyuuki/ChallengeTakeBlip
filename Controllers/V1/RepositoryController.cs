@@ -31,9 +31,19 @@ namespace ChallengeTakeBlip.Controllers.V1
                     OwnerAvatar = x.owner.avatar_url,
                     RepositoryDescription = x.description,
                     RepositoryFullName = x.full_name
-                });
+                })
+                .ToList();
 
-            return Ok(repositoryResponse);
+            var Response = new Response<RepositoryResponse>
+            {
+                firstRepository = repositoryResponse[0],
+                secondRepository = repositoryResponse[1],
+                thirdRepository = repositoryResponse[2],
+                fourthRepository = repositoryResponse[3],
+                fifthRepository = repositoryResponse[4]
+            };
+
+            return Ok(Response);
         }
     }
 }
